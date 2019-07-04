@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       ffmpeg rsstail zip && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install cryptography
+RUN pip install cryptography pyyaml requests
 RUN git clone https://github.com/spaam/svtplay-dl.git && \
     cd svtplay-dl && \
     make && \
