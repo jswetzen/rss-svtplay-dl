@@ -12,4 +12,4 @@ WORKDIR /data
 ENV RSS_URL https://www.svtplay.se/genre/film/rss.xml
 ENV DL_OPTIONS "-S --all-subtitles"
 
-CMD rsstail -i 3 -u $RSS_URL -N -n 0 | while read x ; do $(echo "svtplay-dl ${DL_OPTIONS} $x"); done
+CMD rsstail -i 60 -u $RSS_URL -l -n 0 | grep --line-buffered Link | while read x ; do $(echo "svtplay-dl ${DL_OPTIONS} ${x##*: }x"); done
