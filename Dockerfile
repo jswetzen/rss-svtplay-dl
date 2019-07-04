@@ -3,9 +3,15 @@ LABEL maintainer=jswetzen
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-      ffmpeg rsstail && \
+      ffmpeg rsstail zip && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install svtplay-dl
+RUN pip install cryptography
+RUN git clone https://github.com/spaam/svtplay-dl.git && \
+    cd svtplay-dl && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -r svtplay-dl
 
 WORKDIR /data
 
